@@ -1,9 +1,19 @@
 <?php
 session_start();
 require_once('../config/config.php');
-#include_once('../config/checklogin.php');
-#check_login();
-?>
+
+    /* Load This Page With Logged In User Session */
+    $user_id = mysqli_escape_string($mysqli, $_SESSION['user_id']);
+    $user_sql = mysqli_query($mysqli, "SELECT * FROM users WHERE user_id = '{$user_id}'");
+    if (mysqli_num_rows($user_sql) > 0) {
+        while ($user = mysqli_fetch_array($user_sql)) {
+            /* Global Usernames */
+            $user_name = $user['user_name'];
+            $user_type = $user['user_type'];
+            global $user_name;
+            global $user_type;
+    ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
@@ -213,3 +223,4 @@ include('../partial/head.php');
 </body>
 
 </html>
+<?php }}?>

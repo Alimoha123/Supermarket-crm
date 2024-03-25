@@ -1,10 +1,8 @@
 <?php
-
-#Sign in
-include('../config/config.php');
 session_start();
-if (isset($_POST['sign_in'])) {
 
+include('../config/config.php');
+if (isset($_POST['sign_in'])) {
     #Declare all post values
     $user_email = mysqli_real_escape_string($mysqli, $_POST['user_email']);
     $user_password = mysqli_real_escape_string($mysqli, $_POST['user_password']);
@@ -16,19 +14,20 @@ if (isset($_POST['sign_in'])) {
     if (mysqli_num_rows($result) > 0) {
         $user = mysqli_fetch_assoc($result);
         if (password_verify($user_password, $user['user_password'])) {
-           #redirect to dashboard
-           $_SESSION['user_id'] = $user['user_id'] ;
+            // Set session variables
+            $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['success'] = "Login Successful";
-            header('Location: dashoard.php');
+
+            // Redirect to dashboard
+            header('Location:dashoard.php');
             exit();
         } else {
             $err = "Failed! Please try again.";
         }
     }
 }
-
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 

@@ -4,7 +4,15 @@
     <!-- Include Toastify JavaScript using CDN -->
 <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
-
+<!--Datatables-->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      // DataTable initialization
+      $('#customerTable').DataTable();
+    });
+  </script>
 <!-- JavaScript function for displaying the notification -->
 <!-- JavaScript function for displaying the notification -->
 <script>
